@@ -1,0 +1,92 @@
+version: '3.7'
+
+services:
+  
+  consul-server1:
+    image: hashicorp/consul:1.11.2
+    container_name: consul-server1
+    restart: always
+    volumes:
+     - ./server1.json:/consul/config/server1.json
+    networks:
+      - consul
+    ports:
+      - "8500:8500"
+      - "8600:8600/tcp"
+      - "8600:8600/udp"
+    command: "agent"
+
+  consul-server2:
+    image: hashicorp/consul:1.11.2
+    container_name: consul-server2
+    restart: always
+    volumes:
+     - ./server2.json:/consul/config/server2.json
+    networks:
+      - consul
+    ports:
+      - "8501:8500"
+      - "8601:8600/tcp"
+      - "8601:8600/udp"
+    command: "agent"
+
+  consul-server3:
+    image: hashicorp/consul:1.11.2
+    container_name: consul-server3
+    restart: always
+    volumes:
+     - ./server3.json:/consul/config/server3.json
+    networks:
+      - consul
+    ports:
+      - "8502:8500"
+      - "8602:8600/tcp"
+      - "8602:8600/udp"  
+    command: "agent"
+
+  consul-client1:
+    image: hashicorp/consul:1.11.2
+    container_name: consul-client1
+    restart: always
+    volumes:
+     - ./client1.json:/consul/config/client1.json
+    networks:
+      - consul
+    ports:
+      - "8503:8500"
+      - "8603:8600/tcp"
+      - "8603:8600/udp"
+    command: "agent"
+
+  consul-client2:
+    image: hashicorp/consul:1.11.2
+    container_name: consul-client2
+    restart: always
+    volumes:
+     - ./client2.json:/consul/config/client2.json
+    networks:
+      - consul
+    ports:
+      - "8504:8500"
+      - "8604:8600/tcp"
+      - "8604:8600/udp"
+    command: "agent"
+
+  consul-client3:
+    image: hashicorp/consul:1.11.2
+    container_name: consul-client3
+    restart: always
+    volumes:
+     - ./client3.json:/consul/config/client3.json
+    networks:
+      - consul
+    ports:
+      - "8505:8500"
+      - "8605:8600/tcp"
+      - "8605:8600/udp"
+    command: "agent"
+
+networks:
+  consul:
+    driver: bridge
+

@@ -1,0 +1,26 @@
+{
+    "node_name": "consul-server1",
+    "server": true,
+    "ui_config": {
+        "enabled" : true
+    },
+    "bootstrap_expect": 2,
+    "data_dir": "consul/data/server1",
+    "addresses": {
+        "http" : "0.0.0.0"
+    },
+    "ports": { 
+        "dns": 8600,
+        "http":8500,
+        "serf_lan":8301,
+        "serf_wan": 8302,
+        "server":8300,
+        "grpc":8304,
+        "grpc_tls": 8503
+    },
+    "retry_join":[
+        "127.0.0.1:9301",
+        "127.0.0.1:10301"
+    ],
+    "encrypt": "aPuGh+5UDskRAbkLaXRzFoSOcSM+5vAK+NEYOWHJH7w="
+}
